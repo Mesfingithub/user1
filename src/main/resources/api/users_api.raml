@@ -1,0 +1,117 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/b8988fb8-cff8-4e46-95d6-763cad904bd6/ # 
+title: users_API
+
+/users:
+  description: getting all users
+  get:
+    description: get list of all users
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {"id":01,
+                "first":"Abelak",
+                "department":"MD"
+                },
+
+                {"id":02,
+                "first":"Aphomia",
+                "department":"IT"
+                },
+                {
+                  "id":03,
+                  "first":"Maki",
+                  "department":"SF"
+                }
+
+                ]
+      404:
+        body:
+          application/json:
+            example: "not found"
+  post:
+    description: "Add new user to the list of users"
+    body:
+      application/json:
+        example:
+          {
+            "fist":"Bisrat",
+            "last":"F/Haimanot",
+            "department":"software engineer"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "id":03,
+                "first":"Bisrat",
+                "last":"F/Haimanot",
+                "department":"software engineer"
+                }  
+      400:
+        body:
+          application/json:
+            example:
+              "Bad Request"
+  /{id}:
+    get:
+      description: "get the requested user by thier id#"
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                  "id":04,
+                  "first":"Tize",
+                  "department":"good mom"
+                  }
+        404:
+          body:
+            application/json:
+              example:
+                "user not found"
+    put:
+      description: "update user information"
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                  "id":05,
+                  "first":"Shasha",
+                  "last":"G/tikle",
+                  "department":"developer"
+                  }   
+        405:
+          body:
+            application/json:
+              example:
+                "Method Not Allowed"
+    delete:
+      description: "delete the selected user from the list of users"
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                    "User Deleted"
+                    } 
+        401:
+          body:
+            application/json:
+              example:
+                "Unauthorized"
+              
+            
+              
+
+
+          
